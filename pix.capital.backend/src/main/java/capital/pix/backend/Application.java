@@ -1,7 +1,8 @@
-package capital.pix;
+package capital.pix.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 
 @SpringBootApplication
 public class Application {
