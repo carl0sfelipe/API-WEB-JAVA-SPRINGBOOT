@@ -1,4 +1,4 @@
-package capital.pix.controller;
+package capital.pix.backend.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
