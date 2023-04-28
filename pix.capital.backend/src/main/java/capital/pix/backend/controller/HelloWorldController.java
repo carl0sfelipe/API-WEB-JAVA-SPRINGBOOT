@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 public class HelloWorldController {
 
@@ -15,7 +13,8 @@ public class HelloWorldController {
     private ClienteRepository clienteRepository;
 
     @GetMapping("/hello")
-    public List<Cliente> helloWorld() {
-        return clienteRepository.findAll();
+    public String helloWorld() {
+        Cliente cliente = clienteRepository.findAll().get(0);
+        return "Hello World from " + cliente.getNome();
     }
 }
