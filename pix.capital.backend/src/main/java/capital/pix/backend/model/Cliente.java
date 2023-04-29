@@ -1,6 +1,6 @@
 package capital.pix.backend.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "cliente")
@@ -10,11 +10,16 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome")
-    private String nome;
+    @Column(name = "ClienteNome")
+    private String ClienteNome;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "ClienteCPF")
+    private String ClienteCPF;
+
+    
+    @Column(name = "ClienteFone")
+    private String ClienteFone;
+
 
     public Long getId() {
         return id;
@@ -24,19 +29,27 @@ public class Cliente {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getClienteNome() {
+        return ClienteNome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setClienteNome(String ClienteNome) {
+        this.ClienteNome = ClienteNome;
     }
 
-    public String getEmail() {
-        return email;
+    public String getClienteCPF() {
+        return ClienteCPF;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setClienteCPF(String ClienteCPF) {
+        this.ClienteCPF = ClienteCPF;
+    }    
+    
+    public String getClienteFone() {
+        return ClienteFone;
+    }
+
+    public void setClienteFone(String ClienteFone) {
+        this.ClienteFone = ClienteFone;
     }
 }
