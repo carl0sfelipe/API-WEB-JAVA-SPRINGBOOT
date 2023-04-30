@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api")
-public class Controlador {
+public class ClienteControlador {
     @Autowired
     private PSIMPL impl;
 

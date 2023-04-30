@@ -46,4 +46,9 @@ public class Cliente {
     public void setCliente_fone(String cliente_fone) {
         this.cliente_fone = cliente_fone;
     }
+
+    public Cliente() {
+    }
+    
+    
 }
