@@ -12,11 +12,11 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import jakarta.validation.constraints.NotBlank;
 
-@Entity
 @Data
-@Table(name = "tb_cliente")
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "tb_cliente")
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;

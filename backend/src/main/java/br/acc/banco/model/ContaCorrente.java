@@ -14,10 +14,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name = "tb_conta_corrente")
 public class ContaCorrente implements Serializable {
 

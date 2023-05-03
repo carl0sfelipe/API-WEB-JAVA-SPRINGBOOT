@@ -16,7 +16,14 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tb_extrato")
 public class Extrato implements Serializable {
@@ -40,62 +47,5 @@ public class Extrato implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "fk_conta_corrente_id", nullable = false)
 	private ContaCorrente contaCorrente;
-
-	public Extrato() {
-	}
-
-	public Extrato(Long idExtrato, LocalDateTime dataHoraMovimento, String operacao, BigDecimal valorOperacao,
-			ContaCorrente contaCorrente) {
-		super();
-		this.idExtrato = idExtrato;
-		this.dataHoraMovimento = dataHoraMovimento;
-		this.operacao = operacao;
-		this.valorOperacao = valorOperacao;
-		this.contaCorrente = contaCorrente;
-	}
-
-	public Long getIdExtrato() {
-		return idExtrato;
-	}
-
-	public void setIdExtrato(Long idExtrato) {
-		this.idExtrato = idExtrato;
-	}
-
-	public LocalDateTime getDataHoraMovimento() {
-		return dataHoraMovimento;
-	}
-
-	public void setDataHoraMovimento(LocalDateTime dataHoraMovimento) {
-		this.dataHoraMovimento = dataHoraMovimento;
-	}
-
-	public String getOperacao() {
-		return operacao;
-	}
-
-	public void setOperacao(String operacao) {
-		this.operacao = operacao;
-	}
-
-	public BigDecimal getValorOperacao() {
-		return valorOperacao;
-	}
-
-	public void setValorOperacao(BigDecimal valorOperacao) {
-		this.valorOperacao = valorOperacao;
-	}
-
-	public ContaCorrente getContaCorrente() {
-		return contaCorrente;
-	}
-
-	public void setContaCorrente(ContaCorrente contaCorrente) {
-		this.contaCorrente = contaCorrente;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 }
