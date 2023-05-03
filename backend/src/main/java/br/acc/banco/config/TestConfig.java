@@ -1,68 +1,65 @@
 package br.acc.banco.config;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
+import br.acc.banco.model.ContaCorrente;
+import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 import br.acc.banco.model.Agencia;
 import br.acc.banco.model.Cliente;
-import br.acc.banco.model.ContaCorrente;
+
 import br.acc.banco.repository.AgenciaRepository;
 import br.acc.banco.repository.ClienteRepository;
 import br.acc.banco.repository.ContaCorrenteRepository;
 import br.acc.banco.repository.ExtratoRepository;
+import org.springframework.stereotype.Repository;
 
-@Configuration
-@Profile("test")
+import java.math.BigDecimal;
+
+@Builder
+@Repository
 public class TestConfig implements CommandLineRunner {
 
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private final ClienteRepository clienteRepository;
 
 	@Autowired
-	private AgenciaRepository agenciaRepository;
+	private final AgenciaRepository agenciaRepository;
 
 	@Autowired
-	private ContaCorrenteRepository contaCorrenteRepository;
+	private final ContaCorrenteRepository contaCorrenteRepository;
 
 	@Autowired
-	private ExtratoRepository extratoRepository;
+	private final ExtratoRepository extratoRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
 
-		Cliente cliente = new Cliente();
+		Agencia agencia = Agencia.builder()
+				.nome("Teste")
+				.telefone("222")
+				.endereco("rea")
+				.build();
 
-		cliente.setNome("Adriano");
-		cliente.setCpf("07744091426");
-		cliente.setTelefone("81998771835");
+		agenciaRepository.save(agencia);
+
+		Cliente cliente = Cliente.builder()
+				.agencia(agencia)
+				.cpf("525.545.360-90")
+				.telefone("2222")
+				.nome("nome")
+				.build();
 
 		clienteRepository.save(cliente);
 
-		Agencia agencia = new Agencia();
+ 		ContaCorrente contaCorrente = ContaCorrente.builder()
+				.numero("2222")
+				.saldo(BigDecimal.ZERO)
+				.cliente(cliente)
+				.build();
 
-		agencia.setNome("agencia");
-		agencia.setEndereco("endereco");
-		agencia.setTelefone("telefone");
-		
-		ContaCorrente conta = new ContaCorrente();
+ 		contaCorrenteRepository.save(contaCorrente);
 
-		conta.setNumero("endereco");
-		conta.setSaldo(new BigDecimal(10));
-		
-		conta.setCliente(cliente);
-
-		agenciaRepository.saveAll(Arrays.asList(agencia));
-		
-		contaCorrenteRepository.saveAll(Arrays.asList(conta));
-		
 	}
 
 }

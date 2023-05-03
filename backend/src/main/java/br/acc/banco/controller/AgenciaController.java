@@ -34,7 +34,6 @@ public class AgenciaController {
 		try {
 			Agencia agencia = agenciaService.getAgenciaById(id);
 			response = ResponseEntity.ok(agencia);
-
 		} catch(Exception e) {
 			response = ResponseEntity.notFound().build();
 		}

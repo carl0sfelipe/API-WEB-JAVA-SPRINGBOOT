@@ -48,4 +48,10 @@ public class Extrato implements Serializable {
 	@JoinColumn(name = "fk_conta_corrente_id", nullable = false)
 	private ContaCorrente contaCorrente;
 
+	public Extrato(LocalDateTime dataHoraMovimento, String operacao, BigDecimal valorOperacao, ContaCorrente contaCorrente) {
+		this.dataHoraMovimento = dataHoraMovimento;
+		this.operacao = operacao;
+		this.valorOperacao = valorOperacao;
+		this.contaCorrente = contaCorrente;
+	}
 }

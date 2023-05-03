@@ -2,19 +2,23 @@ package br.acc.banco.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -35,30 +39,28 @@ public class ContaCorrente implements Serializable {
 
 // associando cliente a conta corrente
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Cliente cliente;
 
+
 	public void depositar (BigDecimal valor){
-		if(valor.compareTo(this.saldo) != 1 || valor.equals(BigDecimal.ZERO)){
+		if(valor.compareTo(BigDecimal.ZERO) > 0 ){
 			throw new IllegalArgumentException("Valor inválido para deposito");
 		} else{
 			this.saldo.add(valor);
 		}
 	}
 	public void sacar (BigDecimal valor){
-		if(valor.compareTo(this.saldo) >= 0){
+		if(valor.compareTo(this.saldo) >= 0 && !valor.equals(BigDecimal.ZERO)){
 			throw new IllegalArgumentException("Valor inválido para saque");
 		} else{
 			this.saldo.subtract(valor);
 		}
 	}
 	public void transferir (BigDecimal valor, ContaCorrente destino){
-		if(valor.compareTo(this.saldo) >= 0){
-			throw new IllegalArgumentException("Valor inválido para Transferencia");
-		} else{
-			this.sacar(valor);
-			destino.depositar(valor);
-		}
+		this.sacar(valor);
+		destino.depositar(valor);
 	}
 
 }
