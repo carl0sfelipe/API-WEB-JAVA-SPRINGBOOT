@@ -38,11 +38,27 @@ public class ContaCorrente implements Serializable {
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	private Cliente cliente;
 
-	public void depositar(BigDecimal valor) {
-	    if (valor.compareTo(BigDecimal.ZERO) <= 0) {
-	      throw new IllegalArgumentException("Valor de depósito deve ser maior que zero.");
-	    }
-	   this.saldo = this.saldo.add(valor);
-	   }
+	public void depositar (BigDecimal valor){
+		if(valor.compareTo(this.saldo) != 1 || valor.equals(BigDecimal.ZERO)){
+			throw new IllegalArgumentException("Valor inválido para deposito");
+		} else{
+			this.saldo.add(valor);
+		}
+	}
+	public void sacar (BigDecimal valor){
+		if(valor.compareTo(this.saldo) >= 0){
+			throw new IllegalArgumentException("Valor inválido para saque");
+		} else{
+			this.saldo.subtract(valor);
+		}
+	}
+	public void transferir (BigDecimal valor, ContaCorrente destino){
+		if(valor.compareTo(this.saldo) >= 0){
+			throw new IllegalArgumentException("Valor inválido para Transferencia");
+		} else{
+			this.sacar(valor);
+			destino.depositar(valor);
+		}
+	}
 
 }
