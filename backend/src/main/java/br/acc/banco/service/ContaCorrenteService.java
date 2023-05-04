@@ -1,5 +1,6 @@
 package br.acc.banco.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,4 +60,25 @@ public class ContaCorrenteService {
 
 		return contaCorrenteRepository.save(contaCorrente);
 	}
+
+	public void depositar(Long idContaCorrente, BigDecimal valor) {
+		ContaCorrente contaCorrente = getContaCorrenteById(idContaCorrente);
+		contaCorrente.depositar(valor);
+		saveOrUpdate(contaCorrente);
+	}
+
+	public void sacar(Long idContaCorrente, BigDecimal valor) {
+		ContaCorrente contaCorrente = getContaCorrenteById(idContaCorrente);
+		contaCorrente.sacar(valor);
+		saveOrUpdate(contaCorrente);
+	}
+
+	public void transferir(Long idContaCorrenteOrigem, Long idContaCorrenteDestino, BigDecimal valor) {
+		ContaCorrente contaCorrenteOrigem = getContaCorrenteById(idContaCorrenteOrigem);
+		ContaCorrente contaCorrenteDestino = getContaCorrenteById(idContaCorrenteDestino);
+		contaCorrenteOrigem.transferir(valor, contaCorrenteDestino);
+		saveOrUpdate(contaCorrenteOrigem);
+		saveOrUpdate(contaCorrenteDestino);
+	}
+
 }

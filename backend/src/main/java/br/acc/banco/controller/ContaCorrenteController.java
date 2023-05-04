@@ -1,5 +1,6 @@
 package br.acc.banco.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -80,4 +81,39 @@ public class ContaCorrenteController {
 		contaCorrenteService.createFromCliente(clienteId, contaCorrente);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
+
+	// Depositar valor na conta
+	@PostMapping(path = "/depositar{idContaCorrente}")
+	private ResponseEntity<?> depositar(@PathVariable("idContaCorrente") Long idContaCorrente, @RequestBody BigDecimal valor) {
+		try {
+			contaCorrenteService.depositar(idContaCorrente, valor);
+			return ResponseEntity.ok().build();
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+
+	// Sacar valor da conta
+	@PostMapping(path = "/sacar/{idContaCorrente}")
+	private ResponseEntity<?> sacar(@PathVariable("idContaCorrente") Long idContaCorrente, @RequestBody BigDecimal valor) {
+		try {
+			contaCorrenteService.sacar(idContaCorrente, valor);
+			return ResponseEntity.ok().build();
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+
+	// Transferir valor entre contas
+	@PostMapping(path = "/{idContaCorrenteOrigem}/transferir/{idContaCorrenteDestino}")
+	private ResponseEntity<?> transferir(@PathVariable("idContaCorrenteOrigem") Long idContaCorrenteOrigem, @PathVariable("idContaCorrenteDestino") Long idContaCorrenteDestino, @RequestBody BigDecimal valor) {
+		try {
+			contaCorrenteService.transferir(idContaCorrenteOrigem, idContaCorrenteDestino, valor);
+			return ResponseEntity.ok().build();
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+
+
 }
