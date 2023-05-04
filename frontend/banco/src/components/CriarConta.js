@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './CreateAgency.css';
+
 
 const CreateAccount = () => {
     const [saldo, setSaldo] = useState('');
@@ -8,6 +10,8 @@ const CreateAccount = () => {
     const [clienteId, setClienteId] = useState('');
     const [clientes, setClientes] = useState([]);
     const [message, setMessage] = useState('');
+    const [showForm, setShowForm] = useState(false);
+
 
     useEffect(() => {
         fetchClients();
@@ -42,10 +46,19 @@ const CreateAccount = () => {
         }
     };
 
+    const handleButtonClick = () => {
+        setShowForm(true);
+    };
+
+    const handleCloseButtonClick = () => {
+        setShowForm(false);
+        setMessage('');
+    };
+
     return (
-        <div>
-            <h2>Criar Conta Corrente</h2>
-            <form onSubmit={handleSubmit}>
+        <div  >
+  {showForm ? (
+            <div className="create-agency-form">            <form onSubmit={handleSubmit}>
                 <label htmlFor="saldo">Saldo:</label>
                 <input
                     type="number"
@@ -90,10 +103,14 @@ const CreateAccount = () => {
                 <br />
 
                 <button type="submit">Criar Conta Corrente</button>
-            </form>
-            {message && <p>{message}</p>}
+                <button className="cancel-button"  onClick={handleCloseButtonClick}>Fechar</button>
+                </form>
+              {message && <p>{message}</p>}
+            </div>
+          ) : (
+            <button className="create-agency-button" onClick={handleButtonClick}>Criar Cliente</button>
+          )}
         </div>
-    );
-};
+      );}      
 
 export default CreateAccount;
