@@ -1,18 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-import CreateAgency from './components/CriarAgencia';
-import CreateClient from './components/CriarCliente';
-import CreateAccount from './components/CriarConta';
-import ExpandableListAccounts from './components/MostrarContas';
+// src/App.js
+import { Route, BrowserRouter as Router, Link, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import Bankline from "./components/Bankline";
+import IntraFuncionario from "./components/IntraFuncionario";
 
 function App() {
   return (
-    <div className="App">
-<CreateAgency/>  
-<CreateClient/>
-<CreateAccount/>
-<ExpandableListAccounts/>
-  </div>
+    <Router>
+      <nav>
+        <Link to="/">Home</Link>
+      </nav>
+      <div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/id/:id/*" element={<Bankline />} />
+          <Route path="/intra-funcionario" element={<IntraFuncionario />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

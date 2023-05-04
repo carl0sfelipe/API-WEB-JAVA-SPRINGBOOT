@@ -68,15 +68,6 @@ const CreateAccount = () => {
                 />
                 <br />
 
-                <label htmlFor="limite">Limite:</label>
-                <input
-                    type="number"
-                    id="limite"
-                    value={limite}
-                    onChange={(e) => setLimite(e.target.value)}
-                />
-                <br />
-
                 <label htmlFor="numero">Número:</label>
                 <input
                     type="text"
@@ -108,7 +99,7 @@ const CreateAccount = () => {
               {message && <p>{message}</p>}
             </div>
           ) : (
-            <button className="create-agency-button" onClick={handleButtonClick}>Criar Cliente</button>
+            <button className="create-agency-button" onClick={handleButtonClick}>Criar Conta Corrente</button>
           )}
         </div>
       );}      
