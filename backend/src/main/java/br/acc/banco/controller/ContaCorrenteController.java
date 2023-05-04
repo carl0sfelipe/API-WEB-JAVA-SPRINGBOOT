@@ -1,5 +1,6 @@
 package br.acc.banco.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.acc.banco.model.ContaCorrente;
 import br.acc.banco.service.ContaCorrenteService;
+import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
 
 //creating RestController
@@ -80,4 +82,42 @@ public class ContaCorrenteController {
 		contaCorrenteService.createFromCliente(clienteId, contaCorrente);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
+	
+	
+	
+	//Depositar valor na conta
+	@ApiOperation(value = "solicitação de valor de depósito", notes = "valor do depósito")
+	@PostMapping(path = "/depositar/{idContaCorrente}")
+	private ResponseEntity<?> depositar(@PathVariable("idContaCorrente") Long idContaCorrente, @RequestBody BigDecimal valor) {
+		try {
+			return ResponseEntity.ok().body(contaCorrenteService.depositar(idContaCorrente, valor));
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+	
+
+	// Sacar valor da conta
+	@ApiOperation(value = "solicitação de valor de retirada", notes = "retirar montante")
+	@PostMapping(path = "/sacar/{idContaCorrente}")
+	private ResponseEntity<?> sacar(@PathVariable("idContaCorrente") Long idContaCorrente, @RequestBody BigDecimal valor) {
+		try {
+			return ResponseEntity.ok().body(contaCorrenteService.sacar(idContaCorrente, valor));
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+	
+
+	// Transferir valor entre contas
+	@ApiOperation(value = "Solicitação de transferência de valor", notes = "valor da transferência")
+	@PostMapping(path = "/{idContaCorrenteOrigem}/transferir/{idContaCorrenteDestino}")
+	private ResponseEntity<?> transferir(@PathVariable("idContaCorrenteOrigem") Long idContaCorrenteOrigem, @PathVariable("idContaCorrenteDestino") Long idContaCorrenteDestino, @RequestBody BigDecimal valor) {
+		try {
+			return ResponseEntity.ok().body(contaCorrenteService.transferir(idContaCorrenteOrigem, idContaCorrenteDestino, valor));
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+	
 }
