@@ -10,27 +10,32 @@ import './CreateAgency.css';
 const Bankline = () => {
   const { id } = useParams();
   const [clientName, setClientName] = useState('');
+  const [clientSaldo, setClienteSaldo] = useState(0);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const fetchClient = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/cliente/${id}`);
-        setClientName(response.data.nome);
+        const response = await axios.get(`http://localhost:8080/contaCorrente/cliente/${id}`);
+        setClientName(response.data[0].cliente.nome);
+        setClienteSaldo(response.data[0].saldo);
       } catch (error) {
         console.error('Erro ao buscar cliente:', error);
       }
     };
 
     fetchClient();
-  }, [id]);
+  }, [id, refresh]);
 
   return (
     <div className="create-agency-form">
       <h2>Bankline</h2>
-      {clientName && <h3>Bem-vindo, {clientName}</h3>}
-      <Depositar clienteId={id} />
-      <Sacar clienteId={id} />
-      <Transferir clienteId={id} />
+      {clientName && clientSaldo !== null && (
+        <h3>Bem-vindo, {clientName}. Seu saldo é de: {clientSaldo}</h3>
+      )}
+      <Depositar clienteId={id} setRefresh={setRefresh} />
+      <Sacar clienteId={id} setRefresh={setRefresh} />
+      <Transferir clienteId={id} setRefresh={setRefresh} />
       <ExibirExtrato clienteId={id} />
     </div>
   );
