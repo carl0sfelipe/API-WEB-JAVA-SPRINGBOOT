@@ -1,16 +1,16 @@
 *API-WEB-JAVA-SPRINGBOOT*
 
 
-Este é um projeto de uma API WEB desenvolvida em Java utilizando o framework Spring Boot. A API é responsável por gerenciar um sistema de cadastro de produtos.
+Este é um projeto de uma API WEB desenvolvida em Java utilizando o framework Spring Boot. A API é responsável por gerenciar um sistema bancario
 
 Funcionalidades
 A API possui as seguintes funcionalidades:
 
 Cadastrar um produto
-Listar todos os produtos cadastrados
-Consultar um produto pelo ID
-Atualizar um produto pelo ID
-Excluir um produto pelo ID
+Listar todos os clientes cadastrados
+Consultar um clientes pelo ID
+Atualizar um clientes pelo ID
+Excluir um cliente pelo ID
 Tecnologias Utilizadas
 Java 8
 Spring Boot 2.5.0
@@ -40,10 +40,9 @@ Funcionalidades
 O frontend possui as seguintes funcionalidades:
 
 Listar todos os produtos cadastrados
-Consultar um produto pelo ID
-Cadastrar um novo produto
-Atualizar um produto existente
-Excluir um produto existente
+Consultar uma conta corrente pelo ID
+Cadastrar um nova conta corrente
+fazer transferencias saques e depositos
 Tecnologias Utilizadas
 React 17.0.2
 React Router 5.2.0
