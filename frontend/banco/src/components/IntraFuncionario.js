@@ -4,11 +4,12 @@ import CriarAgencia from './CriarAgencia';
 import CriarCliente from './CriarCliente';
 import CriarContaCorrente from './CriarConta';
 import ExpandableListAccounts from './MostrarContas';
+import './CreateAgency.css'
 
 const IntraFuncionario = () => {
   return (
-    <div>
-      <h1>Intra Funcionário</h1>
+    <div className='create-agency-form' >
+      <h1>Intranet Funcionário</h1>
       <CriarAgencia />
       <CriarCliente />
       <CriarContaCorrente />

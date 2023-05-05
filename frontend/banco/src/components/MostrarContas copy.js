@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './ExpandableListAccounts.css';
 
 const ExpandableListAccounts = () => {
     const [accounts, setAccounts] = useState([]);
@@ -23,11 +22,11 @@ const ExpandableListAccounts = () => {
     };
 
     return (
-        <div className="expandable-container">
+        <div>
             <h2>Contas Correntes</h2>
-            <button className="expandable-button" onClick={handleClick}>{isExpanded ? 'Ocultar' : 'Exibir'}</button>
+            <button onClick={handleClick}>{isExpanded ? 'Ocultar' : 'Exibir'}</button>
             {isExpanded && (
-                <table className="table">
+                <table>
                     <thead>
                         <tr>
                             <th>ID</th>

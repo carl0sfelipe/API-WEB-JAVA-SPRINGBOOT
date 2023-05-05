@@ -1,6 +1,7 @@
 // src/components/Home.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './CreateAgency.css';
 
 const Home = () => {
   const [clientId, setClientId] = useState('');
@@ -17,21 +18,26 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="create-agency-form">
       <h1>Bem-vindo ao Bankline</h1>
-      <div>
+      <div className="section-container">
         <h2>Login Funcionário</h2>
-        <button onClick={handleEmployeeLogin}>Intra Funcionário</button>
+        <button className="home-button" onClick={handleEmployeeLogin}>
+          Intra Funcionário
+        </button>
       </div>
-      <div>
+      <div className="section-container">
         <h2>Login Cliente</h2>
         <input
+          className="home-input"
           type="text"
           value={clientId}
           onChange={(e) => setClientId(e.target.value)}
           placeholder="Digite o ID do cliente"
         />
-        <button onClick={handleClientLogin}>Login</button>
+        <button className="home-button" onClick={handleClientLogin}>
+          Login
+        </button>
       </div>
     </div>
   );
