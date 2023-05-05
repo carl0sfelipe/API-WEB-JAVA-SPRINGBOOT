@@ -1,61 +1,67 @@
-*API-WEB-JAVA-SPRINGBOOT*
+## :bank: Projeto Banco - Frontend (React)
 
+### :page_facing_up: Introdução
 
-Este é um projeto de uma API WEB desenvolvida em Java utilizando o framework Spring Boot. A API é responsável por gerenciar um sistema bancario
+Este projeto é uma aplicação web desenvolvida em React para gerenciar operações bancárias. Ele possui um frontend que se comunica com um backend em Spring Boot para realizar as operações de gerenciamento.
 
-Funcionalidades
-A API possui as seguintes funcionalidades:
+### :wrench: Dependências
 
-Cadastrar um produto
-Listar todos os clientes cadastrados
-Consultar um clientes pelo ID
-Atualizar um clientes pelo ID
-Excluir um cliente pelo ID
-Tecnologias Utilizadas
-Java 8
-Spring Boot 2.5.0
-Maven 3.8.1
-Banco de Dados H2 (para ambiente de desenvolvimento)
-Banco de Dados PostgreSQL (para ambiente de produção)
-Como executar
-Para executar o projeto, siga os passos abaixo:
+As principais dependências do projeto incluem:
 
-Faça o clone deste repositório: git clone https://github.com/carl0sfelipe/API-WEB-JAVA-SPRINGBOOT.git
-Entre na pasta do projeto: cd API-WEB-JAVA-SPRINGBOOT
-Execute o comando: mvn spring-boot:run
-A aplicação estará disponível no endereço http://localhost:8080.
+- React e ReactDOM (versão 18.2.0)
+- React Router DOM (versão 6.11.1)
+- Axios (versão 1.4.0) para realizar chamadas API
+- Bibliotecas de teste, incluindo Testing Library (Jest e React)
 
-Configurações do Banco de Dados
-Para ambiente de desenvolvimento, o banco de dados utilizado é o H2. As configurações podem ser encontradas no arquivo application-dev.properties.
+### :computer: Scripts
 
-Para ambiente de produção, o banco de dados utilizado é o PostgreSQL. As configurações podem ser encontradas no arquivo application-prod.properties.
+Os scripts disponíveis no projeto incluem:
 
-Documentação da API
-A documentação da API pode ser acessada através do link http://localhost:8080/swagger-ui.html. Essa documentação foi gerada automaticamente através do Swagger.
+- `start`: Inicia o servidor de desenvolvimento do React
+- `build`: Cria uma versão de produção otimizada do aplicativo
+- `test`: Executa os testes do aplicativo
+- `eject`: Ejeta a configuração do projeto do CRA (Create React App)
 
-Frontend do projeto API-WEB-JAVA-SPRINGBOOT
-Este é o projeto frontend para consumir a API desenvolvida em Java utilizando o framework Spring Boot. O frontend foi desenvolvido utilizando a biblioteca React.
+---
 
-Funcionalidades
-O frontend possui as seguintes funcionalidades:
+## :bank: Projeto Banco - Backend (Spring Boot)
 
-Listar todos os produtos cadastrados
-Consultar uma conta corrente pelo ID
-Cadastrar um nova conta corrente
-fazer transferencias saques e depositos
-Tecnologias Utilizadas
-React 17.0.2
-React Router 5.2.0
-Axios 0.21.1
-Bootstrap 5.1.0
-Como executar
-Para executar o projeto, siga os passos abaixo:
+### :page_facing_up: Introdução
 
-Faça o clone deste repositório: git clone https://github.com/carl0sfelipe/API-WEB-JAVA-SPRINGBOOT.git
-Entre na pasta do projeto frontend: cd API-WEB-JAVA-SPRINGBOOT/frontend
-Execute o comando: npm install
-Execute o comando: npm start
-A aplicação estará disponível no endereço http://localhost:3000.
+Este projeto é uma aplicação web desenvolvida em Spring Boot para gerenciar operações bancárias. Ele possui um backend RESTful API que se comunica com um frontend em React para realizar as operações de gerenciamento.
 
-Configurações
-As configurações da API são definidas no arquivo src/services/api.js. Se necessário, você pode alterar o valor da constante BASE_URL para apontar para a URL da sua API.
+### :wrench: Dependências
+
+As principais dependências do projeto incluem:
+
+- Spring Boot Starter Data JPA: para facilitar o acesso ao banco de dados usando o JPA
+- Spring Boot Starter Validation: para validação de dados e objetos
+- Spring Boot Starter Web: para criar aplicativos web usando o Spring MVC
+- Spring Boot DevTools: para facilitar o desenvolvimento e depuração
+- MySQL Connector/J: para conectar-se ao banco de dados MySQL
+- H2 Database: para usar o banco de dados em memória H2
+- Lombok: para reduzir a quantidade de código boilerplate
+- SpringFox Swagger2: para gerar documentação da API usando o Swagger
+- SpringDoc OpenAPI Starter WebMvc UI: para gerar documentação da API usando o OpenAPI
+
+### :hammer_and_wrench: Build
+
+O projeto é construído usando o Maven. O plugin `spring-boot-maven-plugin` é usado para criar um arquivo JAR executável. A configuração do plugin exclui a dependência do Lombok do artefato final.
+
+---
+
+## :gear: Instruções de instalação e execução
+
+### :computer: Frontend (React)
+
+1. Clone o repositório do projeto.
+2. Navegue até o diretório do projeto React e instale as dependências com `npm install` ou `yarn`.
+3. Execute o aplicativo em modo de desenvolvimento com `npm start` ou `yarn start`.
+4. Acesse o aplicativo no navegador em `http://localhost:3000`.
+
+### :computer: Backend (Spring Boot)
+
+1. Clone o repositório do projeto.
+2. Navegue até o diretório do projeto Spring Boot e construa o projeto com `mvn clean install`.
+3. Execute o aplicativo com `mvn spring-boot:run` ou execute o arquivo JAR gerado no diretório `target`.
+4. A API estará disponível em `http://localhost:8080`. A documentação da API gerada pelo Swagger ou OpenAPI pode ser acessada em `http://localhost:8080/swagger-ui.html` ou `http://localhost:
