@@ -1,4 +1,4 @@
-API-WEB-JAVA-SPRINGBOOT
+*API-WEB-JAVA-SPRINGBOOT*
 Este é um projeto de uma API WEB desenvolvida em Java utilizando o framework Spring Boot. A API é responsável por gerenciar um sistema de cadastro de produtos.
 
 Funcionalidades
